@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Kundali</title>
+        <link rel="stylesheet" href="css/chartstyle.css"></link>
+        <link href="fonts/font-awesome/css/all.css" rel="stylesheet">
+        <link  href="css/datepicker.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Anton|Bitter:400,700|Fjalla+One|Playfair+Display:400,400i,700,900|Teko:300,400,500,600,700&display=swap&subset=devanagari" rel="stylesheet">
+        <script src="js/jquery-1.10.1.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        
+        <!--<script src="js/datepicker.js"></script>-->
+        <script src="js/lodash.js"></script>
+
+        <script src="js/d3.v4.min.js" charset="utf-8"></script>
+        <script src="js/d3.timeline.js"></script>
+    </head>
+    <body>
+        <div class="flex">
+            
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="header container">
+            <div class="logo">
+                <div id="logo"></div>
+                <p>Kaalchakra</p>
+            </div>
+            <div class="items">
+                <p class="item">Understand</p>
+                <p class="item">Panchang</p>
+                <div class="datetime">
+                    <div class="date">21</div>
+                    <div class="month">June</div>
+                    <div class="year">2019</div>
+                    <div class="time">03:47</div>
+                    <div class="ampm">pm</div>
+                </div>
+                <div class="pickdate">
+                    <input data-toggle="datepicker">
+                    <textarea data-toggle="datepicker"></textarea>
+                    <div data-toggle="datepicker" class="ye"></div>
+                </div>
+                <div class="sub-menu1">
+                    <p class="sub-menu-item">Geocentricity</p>
+                    <p class="sub-menu-item">Zodiac Band</p>
+                    <p class="sub-menu-item">Luni-Solar Calendar</p>
+                </div>
+                <div class="sub-menu2">
+                    <p class="sub-menu-item">KundaliWheel</p>
+                    <p class="sub-menu-item">Timeline</p>
+                </div>
+
+                <div class="menu">
+                    <div class="menu_panel">
+                        
+                        <input type="text" id="datepicker">
+                    </div>
+                    <i class="far fa-window-close "></i>
+                    <i class="fas fa-info-circle open"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main container">
+            
+            <div class="left">
+                <div class="panel" id="geo-centric">
+                    <p class="title" >Geo-Centric</p>
+                    <div class="main-graphic"></div>
+                    <div class="text">
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                </div>
+                <div class="panel" id="zodiac-band">
+                    <p class="title">Zodiac-Band</p>
+                    <div class="main-graphic"></div>
+                    <div class="text">
+                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                </div>
+                <div class="panel" id="calendar">
+                    <p class="title">Luni-Solar Calendar</p>
+                    <div class="main-graphic"></div>
+                    <div class="tithi-circle"></div>
+                    <div class="text">
+                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                </div>
+
+                <div class="kundali_wheel hide">
+                    
+                    <label class="switch">
+                      <input type="checkbox" id="kundali_switch" >
+                      <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="timeline hide"></div>
+
+                
+                
+            </div>
+                
+            <div class="right">
+                <div class="info">
+                    <div id="Vaara">
+                        <h1>Heading</h1>
+                                                The standard Lorem Ipsum passage, used since the 1500s
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+                        Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+                        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+
+                        1914 translation by H. Rackham
+                        "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+                    </div>
+                </div>
+                <div class="legends">
+                    <div class="part" id="Vaara">
+                        <div class="circle"></div>
+                        <p>Vaara</p>
+                        <hr>
+                    </div>
+                    <div class="part" id="Thithi">
+                        <div class="circle"></div>
+                        <p>Thithi</p>
+                        <hr>
+                    </div>
+                    <div class="part" id="Nakshatra">
+                        <div class="circle"></div>
+                        <p>Nakshatra</p>
+                        <hr>
+                    </div>
+                    <div class="part" id="Yoga">
+                        <div class="circle"></div>
+                        <p>Yoga</p>
+                        <hr>
+                    </div>
+                    <div class="part" id="Karana">
+                        <div class="circle"></div>
+                        <p>Karana</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer container"></div>
+
+        <script>
+
+            var menu=2;
+            var menubutton=0;
+            $(document).ready(function(){
+                
+                var width=$(window).width();
+                var height=$(window).height();
+
+                drawChart();
+                drawTithiChart();
+                drawTithiWheel();
+                
+
+                //date picker
+                //$('[data-toggle="datepicker"]').datepicker();
+
+                $(".sub-menu1, .sub-menu2").css({"width":width*0.53-height*0.195});
+
+                $(window).resize(function(){
+                    d3.selectAll("svg").remove();
+                    drawChart();
+                    drawTithiChart();
+                    drawTithiWheel();
+
+                //dimensioning
+                    $(".sub-menu1, .sub-menu2").css({"width":width*0.53-height*0.195});
+
+
+
+                });
+
+
+            
+
+
+
+
+
+
+
+                $("g.container").hover(function(){
+                    rotateChart()
+                },function(){
+
+                });
+
+                $(".flex>i").click(function(){
+                    $(".flex").css({"visibility":"hidden"});
+                    showKundaliWheel();
+
+                });
+
+                $(".item").click(function(){
+                    var new_value=$(".item").index(this);
+                    if(menu==new_value)
+                    {
+                        menu=2; //no menu selected
+
+
+                    }
+                    else
+                    {   
+                        menu=new_value;
+                        if(menu==0) //first menu selected
+                        {   
+                            showMenu(0,this);
+                        }
+                        else   //second value selected
+                        {
+                            showMenu(1,this);
+                        }
+                    }
+
+                });
+
+                $(".sub-menu1>p, .sub-menu2>p").click(function(){
+                    showPanel(this,menu);
+                })
+
+                $(".menu>i").click(function(){
+                    
+                    if(menubutton==0)
+                    {
+                        $(".fa-info-circle").removeClass("open");
+                        $(".fa-window-close").addClass("open");
+                        $(".menu_panel").addClass("open");
+                        menubutton=1;
+                    }
+                    else
+                    {   
+                        $(".fa-info-circle").addClass("open");
+                        $(".fa-window-close").removeClass("open");
+                        $(".menu_panel").removeClass("open");
+                        menubutton=0;
+                    }
+
+
+                })
+
+                $("#kundali_switch").change(function(){
+                    if(this.checked){
+                        
+                        
+                        drawChart.kundaliChart(1);
+                    }
+                    else{
+                        
+                        $(".arc0 path").css({"fill":"rgba(0,0,0,0)"});
+                        drawChart.kundaliChart(0);
+                    }
+                });
+                
+
+                /*
+                var userId = '604389';
+                var apiKey = '2b4854378ff96d476a1e2cca65d058f3';
+                var data = 'JSON Request Data';
+                var request = $.ajax({
+                url: "https://json.astrologyapi.com/v1/basic_panchang",
+                method: "POST",
+                dataType:'json',
+                headers: {
+                "authorization": "Basic " + btoa(userId+":"+apiKey),
+                "Content-Type":'application/json'
+                },
+                data:JSON.stringify(data)
+                });
+                // Returns A promiss
+                return( request.then( function(resp){
+                return resp;
+                }, function(err){
+                return err;
+                }));
+                */
+                
+
+
+
+
+
+            })
+
+            /*$('#iframe1').load( function(){
+                var $iFrameContents = $('#iframe1').contents(),
+                $city   = $iFrameContents.find('div.feed> b:nth-child(1)');
+                console.log($city+"______");
+                //$iFrameContents.find('html').replaceWith($city);
+            }); 
+            */
+            function rotateChart(){
+                var panchang={Vaara:1, Thithi:2, Nakshatra:2, Yoga:5, Karana:6};
+                var vAngle=(panchang.Nakshatra-0.5)*(360/27);
+                var tAngle=(panchang.Nakshatra-0.5)*(360/27);
+                var nAngle=(panchang.Nakshatra-0.5)*(360/27);
+                var yAngle=(panchang.Nakshatra-0.5)*(360/27);
+                var kAngle=(panchang.Nakshatra-0.5)*(360/27);
+                $(".Nakshatra").css({"transform":"rotate("+nAngle+" deg)"});
+            }
+            
+            function showKundaliWheel()
+            {
+                $(".kundali_wheel").removeClass("hide");
+
+            }
+            function hideKundaliWheel()
+            {
+                $(".kundali_wheel").addClass("hide");
+            }
+            function showTimeline()
+            {
+                $(".timeline").removeClass("hide");
+            }
+            function hideTimeline()
+            {
+                $(".timeline").addClass("hide");
+            }
+            function showMenu(a,ref){
+                if(a==0)
+                {
+                    //$(".sub-menu1").css({"visibility":"visible","transform":"translate(0,107%)","opacity":"1"});
+                    $(".sub-menu1").addClass("show");
+                    $(".sub-menu2").removeClass("show");
+                    $(".item").eq(0).addClass("selected");
+                    $(".item").eq(1).removeClass("selected");
+                }
+                else{
+                    $(".sub-menu2").addClass("show");
+                    $(".sub-menu1").removeClass("show");
+                    $(".item").eq(1).addClass("selected");
+                    $(".item").eq(0).removeClass("selected");
+                }
+            }
+           
+            function home(){
+                for(var i=0;i<3;i++)
+                {
+                    
+                         $(".panel").eq(i).removeClass("big");
+                   
+                }
+                showKundaliWheel();
+            }
+
+            function showPanel(a,b){
+                
+                if(b==0)
+                {var index=$(".sub-menu-item").index(a);
+                    
+                    for(var i=0;i<3;i++)
+                    {
+                        if(i==index)
+                        {
+                            $(".panel").eq(index).addClass("big");
+                            console.log("index="+index);
+                        }        
+                        else{
+                             $(".panel").eq(i).removeClass("big");
+                        }
+
+                    }
+                    hideKundaliWheel();
+                    hideTimeline();
+                    $(".info").addClass("hide");
+                }
+                else{
+                    var index=$(".sub-menu2>p").index(a);
+                    
+                    for(var i=0;i<3;i++)
+                    {
+                        
+                             $(".panel").eq(i).removeClass("big");
+                        
+                    }
+                    if(index==0)
+                    {
+                        showKundaliWheel();
+                        hideTimeline();
+                    }
+                    else{
+                        showTimeline();
+                        hideKundaliWheel();
+                    }
+                }
+
+                $(this).addClass("selected");
+                
+                
+            }
+
+
+    
+        </script>
+        <script src="js/d3script.js"></script>
+    </body>
+</html>
