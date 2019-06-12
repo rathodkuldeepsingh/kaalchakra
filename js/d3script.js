@@ -471,6 +471,9 @@ function drawTithiChart(){
                     .attr("width",windowWidth*100)
                     .attr("height",height*0.05)
                     .attr("transform","translate(0,"+windowHeight*0.5+")")
+                    .call(d3.zoom().on("zoom", function () {
+                        svg.attr("transform", d3.event.transform)
+                     }))
                     .append("g")
                     .attr("class","x-axis-day")
                     .attr("text-anchor","end")
@@ -1040,7 +1043,7 @@ function drawTithiWheel(){
                     .attr("d",d3.arc()
                         .innerRadius(innerRadius)
                         .outerRadius(function(d){
-                            console.log(tithi_lengths[i][1]+" "+tithi_lengths[i][2]+" "+tithi_lengths[i][3]);
+                            //console.log(tithi_lengths[i][1]+" "+tithi_lengths[i][2]+" "+tithi_lengths[i][3]);
                             return y((dateTime(tithi_lengths[i][3])-dateTime(tithi_lengths[i][2]))/60/60/1000);
                             })
                         .startAngle(function(){
@@ -1102,7 +1105,7 @@ function drawTithiWheel(){
                     .attr("d",d3.arc()
                         .innerRadius(innerRadius)
                         .outerRadius(function(d){
-                            console.log(tithi_lengths[i][1]+" "+tithi_lengths[i][2]+" "+tithi_lengths[i][3]);
+                            //console.log(tithi_lengths[i][1]+" "+tithi_lengths[i][2]+" "+tithi_lengths[i][3]);
                             return y((dateTime(tithi_lengths[i][3])-dateTime(tithi_lengths[i][2]))/60/60/1000);
                             })
                         .startAngle(function(){
