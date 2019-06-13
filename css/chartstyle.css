@@ -39,6 +39,96 @@ h1{
 .container{
 	width: 100vw;
 }
+.container>g>.upar, .container>g>.side{
+	position:absolute;
+	color: black;
+	font-family: bitter;
+	width: 10vh;
+	font-size: 1.1vh;
+
+}
+.container>g>.upar{
+	top: 0;
+	left: 50%;
+}
+.container>g>.side{
+	top: 50%;
+	left: 100%;
+}
+g>.cap{
+	transform: translate(1%,-47.5%);
+    font-size: 1vh;
+    fill: #a7a7a7;
+}
+g>.capi{
+	transform: translate(1%,-47.5%);
+    font-size: 1vh;
+    fill: #a7a7a7;
+}
+.cap#one{
+	transform: translate(1%,-47.5%);
+}
+.cap#two{
+	transform: translate(1%,-46%);
+}
+.cap#three{
+	transform: translate(1%,-44.5%);
+}
+.cap#four{
+	transform: translate(1%,-43%);
+}
+.cap#five{
+	transform: translate(1%,-41.5%);
+}
+
+.capi#one{
+	transform: translate(37.5%,2.5%);
+}
+.capi#two{
+	transform: translate(37.5%,3.8%);
+}
+.capi#three{
+	transform: translate(37.5%,5%);
+}
+.capi#four{
+	transform: translate(37.5%,6.4%);
+}
+.capi#five{
+	transform: translate(37.5%,8%);
+}
+
+	
+
+.upar#one{
+	transform: translate(5.2vh,-38vh);
+}
+.upar#two{
+	transform: translate(5.2vh,-36.8vh);
+}
+.upar#three{
+	transform: translate(5.2vh,-35.6vh);
+}
+.upar#four{
+	transform: translate(5.2vh,-34.4vh);
+}
+.upar#five{
+	transform: translate(5.2vh,-33.2vh);
+}
+.side#one{
+	transform: translate(34.2vh,2vh);
+}
+.side#two{
+	transform: translate(34.2vh,3vh);
+}
+.side#three{
+	transform: translate(34.2vh,4.1vh);
+}
+.side#four{
+	transform: translate(34.2vh,5.2vh);
+}
+.side#five{
+	transform: translate(34.2vh,6.3vh);
+}
 .main{
 	height: 80vh;
 	display: block;
@@ -175,16 +265,18 @@ path:hover{
 	display: block;
 }
 .arc path, .arc1 path, .arc2 path, .arc3 path{
-	fill: #f57d5a !important;
+	fill: #ffc7b6 !important;
 }
 .arc path, .arc1 path, .arc2 path, .arc3 path, .arc4 path, .arc5 path{
-	stroke: #f9f6f8  !important;
+	stroke: #f57d5a  !important;
+	stroke-width:2.5;
 }
 .arc4 path, .arc5 path{
 	fill: #f9f6f8 !important;
 }
 .arc4 path, .arc5 path{
 	stroke: #e27d60 !important;
+	stroke-width:1.5 !important;
 }
 
 hr{
@@ -221,6 +313,7 @@ g.container>g{
 	  width: 2.8vw;
 	  height: 1.7vw;
 	  z-index: 1;
+	  display: none;
 	}
 
 	.switch input { 
@@ -350,7 +443,28 @@ g.container>g{
 		position: absolute;
 	}
 	.pickdate{
-		display:none;
+		position: absolute;
+	    height: 0vh;
+	    width: 37.5vh;
+	    top: 10vh;
+	    left: 52vw;
+		background: pink;
+		visibility: none;
+		opacity:0;
+		transition: all 0.5s ease-in-out;
+	}
+	.pickdate.show{
+		visibility: visible;
+		opacity:1;
+		z-index: 2;
+	}
+	#datepick{
+		    position: absolute;
+		    right: 0;
+		    height: 5vh;
+		    top: -5.5vh;
+		    width: 19vh;
+		    opacity: 0;
 	}
 	.logo>#logo{
     height: 5vh;
@@ -369,6 +483,7 @@ g.container>g{
 	width: 100vw;
 	height: 100vh;
 	background:#f57d5a;
+	/*background:#fff; */
 	opacity: 1;
 	position: absolute; 
 	z-index: 3;
@@ -637,6 +752,21 @@ g.container>g{
 
 
 }
+.rashinames{
+	font-family: bitter;
+	font-size: 0.8vh;	
+	fill: white;
+}
+.naknames{
+	font-family: bitter;
+	font-size: 0.8vh;	
+	fill: white;
+}
+.yognames{
+	font-family: bitter;
+	font-size: 0.8vh;	
+	fill: white;
+}
 .kundali_wheel{
 	transition: transform 0.6s ease-in-out 0.2s, visibility 0.5s ease-in-out 0.6s, opacity 0.6s ease-in-out ;
 	transform: translateX(0%);
@@ -781,19 +911,19 @@ g.container>g{
 }
 .timel{
 	width: 100%;
-	height: 80%;
-	position: relative;
-	top: 20%;
-	left: 0%;
-	opacity: 1;
-	visibility: visible;
-	background:#27272700; 
-	overflow: hidden;
-	transition: all 0.5s ease-in-out;
+    height: 100%;
+    position: relative;
+    /* top: 20%; */
+    left: 0%;
+    opacity: 1;
+    visibility: visible;
+    background: #27272700;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
 }
 .timeline{
 	width: 95%;
-	height: 74%;
+	height: 80%;
 	position: relative;
 	top: 20%;
 	left: 10%;
@@ -806,6 +936,7 @@ g.container>g{
 .timel.hide{
 	opacity: 0;
 	visibility: hidden;
+	left: -100%;
 
 }
 .y-axis{
@@ -816,26 +947,110 @@ g.container>g{
 	text-align: right;
 	font-size: 1.5vh;
 	position: absolute;
-	top: 14%;
+	bottom: 0.6vh;
     left: -2%;
 }
+.timeline>.move{
+	height: 30vh;
+	width: 0.5vh;
+	background: black;
+	position: absolute;
+	bottom: 0; 
+	z-index: 3;
+}
+.timeline>.move>p{
+	position: absolute;
+	color: black;
+	font-size: 2vh;
+	font-family: bitter;
+	width: 10vw;
+}
+.timeline>.move>p:nth-child(1){
+	top:5vh;
+	left: 1vh;
+}
+.timeline>.move>p:nth-child(2){
+	top:10vh;
+	left: 1vh;
+}
+.timeline>.move>p:nth-child(3){
+	top:14.7vh;
+	left: 1vh;
+}
+.timeline>.move>p:nth-child(4){
+	top:19.5vh;
+	left: 1vh;
+}
+
+.move>.sun{
+	height: 5vh;
+	width: 5vh;
+	top: -2vh;
+	left: -2.2vh;
+	position: absolute;
+	background-image: url(../img/sun.png);
+    background-size: contain;
+	border-radius: 50%; 
+}
+.sun>p{
+	position: absolute;
+	color: black;
+	width: 10vh;
+	font-family: bitter;
+}
+.sun>p:nth-child(1){
+	left: 5vh;
+    top: -1vh;
+    font-size: 1vh;
+    color: #9e9e9e;
+    /* font-weight: bold; */
+}
+.sun>p:nth-child(2){
+	left: 5vh;
+    top: -0.8vh;
+    font-weight: bold;
+}
+.sun>p:nth-child(3){
+	    left: 5vh;
+    top: 1.8vh;
+    font-size: 1vh;
+    color: #9e9e9e;
+    /* font-weight: bold; */
+}
+.sun>p:nth-child(4){
+	    left: 5vh;
+    top: 2.1vh;
+}
+.move>.moon{
+	height: 5vh;
+	width: 5vh;
+	top: -10vh;
+	position: absolute;
+	background:gray;
+	border-radius: 50%; 
+}
+
+
+
+
 .y-axis>p{
 	bottom: 0;
     position: absolute;
     right: 0;
 }
 .y-axis>p:nth-child(1){
-	bottom: 24vh;
+	bottom: 21.5vh;
 }
 .y-axis>p:nth-child(2){
-	bottom: 18.5vh;
+	bottom: 16.7vh;
 }
 .y-axis>p:nth-child(3){
-	bottom: 12.5vh;
+	bottom: 12vh;
 }
 .y-axis>p:nth-child(4){
 	bottom: 7vh;
 }
+
 .x-axis-mon>path{
 	stroke: rgba(0,0,0,0);
 }

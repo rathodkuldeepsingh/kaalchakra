@@ -3,11 +3,81 @@
 
 
             var windowWidth, windowHeight, width, height, radius;
-            var nakshatra =new Array(27).fill(1);
+            var nakshatra =[
+                            {name:"Swati",value:1},
+                            {name:"Vishakha",value:1},
+                            {name:"Anuradha",value:1},
+                            {name:"Jyeshtha",value:1},
+                            {name:"Mula",value:1},
+                            {name:"Purva Ashada",value:1},
+                            {name:"Uttara Ashada",value:1},
+                            {name:"Shravana",value:1},
+                            {name:"Dhanishtha",value:1},
+                            {name:"Shatabhisha",value:1},
+                            {name:"Purva Bhadrapada",value:1},
+                            {name:"Uttara Bhadrapada",value:1},
+                            {name:"Revati",value:1},
+                            {name:"Ashwini",value:1},
+                            {name:"Bharani",value:1},
+                            {name:"Krittika",value:1},
+                            {name:"Rohini",value:1},
+                            {name:"Mrigashirsha",value:1},
+                            {name:"Ardra",value:1},
+                            {name:"Punavasu",value:1},
+                            {name:"Pushya",value:1},
+                            {name:"Ashlesha",value:1},
+                            {name:"Magha",value:1},
+                            {name:"Purva Phalguni",value:1},
+                            {name:"Uttara Phalguni",value:1},
+                            {name:"Hasta",value:1},
+                            {name:"Chitra",value:1}];                     
+                     
+
             var rashi =new Array(12).fill(1);
+            var rashival=[{name:"Meena",value:1},
+                           {name:"Kumbha",value:1},
+                           {name:"Makara",value:1},
+                           {name:"Dhanush",value:1},
+                           {name:"Vruschika",value:1}, 
+                           {name:"Tula",value:1},
+                           {name:"Kanya",value:1},
+                           {name:"Simha",value:1},
+                           {name:"Karaka",value:1},
+                           {name:"Mihuna",value:1},
+                           {name:"Vrushabaha",value:1},
+                           {name:"Mesha",value:1}];
+
+            var yoga = [{name:"Dhriti",value:1},
+                        {name:"Shula",value:1},
+                        {name:"Ganda",value:1},
+                        {name:"Vriddhi",value:1},
+                        {name:"Dhruva",value:1},
+                        {name:"Vyaghata",value:1},
+                        {name:"Harshana",value:1},
+                        {name:"Vajra",value:1},
+                        {name:"Siddhi",value:1},
+                        {name:"Vyatipata",value:1},
+                        {name:"Varigha",value:1},
+                        {name:"Parigha",value:1},
+                        {name:"Shiva",value:1},
+                        {name:"Siddha",value:1},
+                        {name:"Sadhya",value:1},
+                        {name:"Shubha",value:1},
+                        {name:"Shukla",value:1},
+                        {name:"Brahma",value:1},
+                        {name:"Indra",value:1},
+                        {name:"Vaidhriti",value:1},
+                        {name:"Vishkambha",value:1},
+                        {name:"Ayushman",value:1},
+                        {name:"Saubhagya",value:1},
+                        {name:"Shobhana",value:1},
+                        {name:"Atiganda",value:1},
+                        {name:"Atiganda",value:1},
+                        {name:"Sukarman",value:1}];
+           
             var pada = new Array(108).fill(1);
             var tithi = new Array(354).fill(1);
-            var yoga = new Array(27).fill(1);
+            
             var days = new Array(365).fill(1);
             
             windowWidth=$(window).width();
@@ -19,17 +89,24 @@
             var dateTime=d3.timeParse("%I:%M %p %m/%d/%Y");
             var dates=d3.timeParse("%m/%d/%Y");
             var time=d3.timeParse("%I:%M %p");
-            var formatDateTime=d3.timeFormat();
+            var formatDate=d3.timeFormat("%m/%d/%Y");
+            var formatTime=d3.timeFormat("%I:%M %p");
             var formatTime_hour=d3.timeFormat("%I");
             var formatTime_day=d3.timeFormat("%d");
             var formatTime_month=d3.timeFormat("%b");
-            var formatTime_daymonth=d3.timeFormat("%d,%b");
+            var formatMonth=d3.timeFormat("%m");
+            var formatTime_daymonth=d3.timeFormat("%d %b");
 
 
             var tithi_lengths=[];
+            var karana_length=[];
+            var yoga_length=[];
+            var nakshatra_length=[];
+
+             var dat;
                 
             
-           
+
            
             
 
@@ -51,9 +128,13 @@ function drawChart()
             }
             
             
-            
+            d3.csv('panchang.csv',function(error,data){
+             if(error){ throw error;}
+             
+             dat=data;
+            })
 
-            //colors
+           
             
 
 //Backgdrop arc thickness
@@ -63,27 +144,27 @@ function drawChart()
 
             //Rashi arc thickness
             var rashi_arc=d3.arc()
-                    .outerRadius(radius*0.85)
-                    .innerRadius(radius*0.65);
+                    .outerRadius(radius*0.90)
+                    .innerRadius(radius*0.75);
 
             //Nakshatra arc thickness
             var nakshatra_arc=d3.arc()
-                    .outerRadius(radius)
-                    .innerRadius(radius*0.85);
+                    .outerRadius(radius*1.10)
+                    .innerRadius(radius*0.95);
 
             //pada arc thickness        
             var pada_arc=d3.arc()
-                    .outerRadius(radius*1.05)
-                    .innerRadius(radius);
+                    .outerRadius(radius*0.95)
+                    .innerRadius(radius*0.90);
 
             //yoga arc thickness        
             var yoga_arc=d3.arc()
-                    .outerRadius(radius*1.3)
-                    .innerRadius(radius*1.15);
+                    .outerRadius(radius*1.40)
+                    .innerRadius(radius*1.25);
 
             //tithi arc thickness        
             var tithi_arc=d3.arc()
-                    .outerRadius(radius*1.44)
+                    .outerRadius(radius*1.45)
                     .innerRadius(radius*1.4);
 
             //days arc thickness        
@@ -102,16 +183,22 @@ function drawChart()
             //pie generator
             var pieRashi=d3.pie()
                     .sort(null)
-                    .value(function(d) {return d;});
+                   // .startAngle(-90 * Math.PI/180)
+                   // .endAngle(-90 * Math.PI/180 + 2*Math.PI)
+                    .value(function(d) {return d.value;});
             var pieNakshatra=d3.pie()
                     .sort(null)
-                    .value(function(d) {return d;});
+                    //.startAngle(0)
+                    //.endAngle( 2*Math.PI)
+                    .value(function(d) {return d.value;});
             var piePada=d3.pie()
                     .sort(null)
                     .value(function(d) {return d;});
             var pieYoga=d3.pie()
                     .sort(null)
-                    .value(function(d) {return d;});
+                    //.startAngle(-90 * Math.PI/180)
+                   // .endAngle(-90 * Math.PI/180 + 2*Math.PI)
+                    .value(function(d) {return d.value;});
             var pieTithi=d3.pie()
                     .sort(null)
                     .value(function(d) {return d;});
@@ -158,93 +245,42 @@ function drawChart()
                     .duration(2000)
                     .attrTween("d", pieTweenB);
 
-//generate Rashi arcs
-                //append g element
-                var r= svg.append("g")
-                    .attr("class","wheelRashi");
 
-                r.selectAll(".arc")
-                    .data(pieRashi(rashi))
-                    .enter().append("g")
-                    .attr("class", "arc")
-                    .append("path")
-                    .attr("id","try")
-                    .attr("d",rashi_arc)
-                    .style("fill", d3.color("#ff652f"))
-                    .transition()
-                    .ease(d3.easeLinear)
-                    .duration(2000)
-                    .attrTween("d", pieTweenR);
 
-                    
-                //append the text(labels)
-                r.append("text")
-                    //.transition()
-                    //.ease(d3.easeLinear)
-                    //.duration(2000)
-                    .append("textPath")
-                    .attr("xlink:href","#try")
-                    .style("text-anchor","middle")
-                    .attr("startOffset","50%")
-                    //.attr("transform", function(d) {return "translate(" + labelArc.centroid(d)+ ")"; })
-                    //.attr("dy",".35em")
-                    .text(function(d) {return "Something";});
-                /*y.append("text")
-                .append("textPath")
-                .attr("xlink:href","#try")
-                .style("text-anchor","middle")
-                .attr("startOffset","50%")
-                .text("Hey, my boy wassup");
-                */
 
-//generate Nakshtra Arcs
-                var n= svg.append("g")
-                          .attr("class","wheelNakshatra");
-                    
-                n.selectAll(".arc1")
-                    .data(pieNakshatra(nakshatra))
-                    .enter().append("g")
-                    .attr("class", "arc1")
-                    .append("path")
-                    .attr("d",nakshatra_arc)
-                    .style("fill",d3.color("#ff652f"))
-                    .transition()
-                    .ease(d3.easeLinear)
-                    .duration(2000)
-                    .attrTween("d", pieTweenN);
+//generate Days arcs
+                var d= svg.append("g")
+                          .attr("class","Days");
 
-//generate Pada arcs
-                var p= svg.append("g")
-                          .attr("class","wheelPada");
-                p.selectAll(".arc2")
-                    .data(piePada(pada))
-                    .enter().append("g")
-                    .attr("class", "arc2")
-                    .append("path")
-                    .attr("d",pada_arc)
-                    .style("fill",d3.color("#ff652f"))
-                    .transition()
-                    .ease(d3.easeLinear)
-                    .duration(2000)
-                    .attrTween("d", pieTweenP);
+                d.append("circle")
+                .attr("cx","0")
+                .attr("cy","0")
+                .attr("r",radius*1.30)
+                .attr("stroke","#f57d5a")
+                .attr("stroke-width",radius*0.2)
+                .attr("fill","white");
 
-//generate Yoga arcs
-                var y= svg.append("g")
-                          .attr("class","wheelYoga");
+                d.append("circle")
+                .attr("cx","0")
+                .attr("cy","0")
+                .attr("r",radius*0.92)
+                .attr("stroke","#f57d5a")
+                .attr("stroke-width",radius*0.45)
+                .attr("fill","white");
+
                 
-                y.selectAll(".arc3")
-                    .data(pieYoga(yoga))
+                
+                d.selectAll(".arc5")
+                    .data(pieDays(days))
                     .enter().append("g")
-                    .attr("class", "arc3")
+                    .attr("class", "arc5")
                     .append("path")
-                    .attr("d",yoga_arc)
+                    .attr("d",days_arc)
                     .style("fill",d3.color("rgba(0,0,0,0)"))
                     .transition()
                     .ease(d3.easeLinear)
                     .duration(2000)
-                    .attrTween("d", pieTweenY);
-
-                
+                    .attrTween("d", pieTweenD);
 
 //generate Tithi arcs
                 var t= svg.append("g")
@@ -262,21 +298,222 @@ function drawChart()
                     .duration(2000)
                     .attrTween("d", pieTweenT);
 
-//generate Days arcs
-                var d= svg.append("g")
-                          .attr("class","Days");
+//generate Yoga arcs
+                var y= svg.append("g")
+                          .attr("class","wheelYoga");
                 
-                d.selectAll(".arc5")
-                    .data(pieDays(days))
+                y.selectAll(".arc3")
+                    .data(pieYoga(yoga))
                     .enter().append("g")
-                    .attr("class", "arc5")
+                    .attr("class", "arc3")
                     .append("path")
-                    .attr("d",days_arc)
+                    .attr("d",yoga_arc)
                     .style("fill",d3.color("rgba(0,0,0,0)"))
                     .transition()
                     .ease(d3.easeLinear)
                     .duration(2000)
-                    .attrTween("d", pieTweenD);
+                    .attrTween("d", pieTweenY)
+                    .each(function(d,i) {
+                                //Search pattern for everything between the start and the first capital L
+                                var firstArcSection = /(^.+?)L/;    
+
+                                //Grab everything up to the first Line statement
+                                var newArc = firstArcSection.exec( d3.select(this).attr("d") )[1];
+                                //Replace all the comma's so that IE can handle it
+                                newArc = newArc.replace(/,/g , " ");
+                                
+                                //If the end angle lies beyond a quarter of a circle (90 degrees or pi/2) 
+                                //flip the end and start position
+                                if (d.endAngle > 90 * Math.PI/180) {
+                                    var startLoc    = /M(.*?)A/,        //Everything between the first capital M and first capital A
+                                        middleLoc   = /A(.*?)0 0 1/,    //Everything between the first capital A and 0 0 1
+                                        endLoc      = /0 0 1 (.*?)$/;   //Everything between the first 0 0 1 and the end of the string (denoted by $)
+                                    //Flip the direction of the arc by switching the start en end point (and sweep flag)
+                                    //of those elements that are below the horizontal line
+                                    var newStart = endLoc.exec( newArc )[1];
+                                    var newEnd = startLoc.exec( newArc )[1];
+                                    var middleSec = middleLoc.exec( newArc )[1];
+                                    
+                                    //Build up the new arc notation, set the sweep-flag to 0
+                                    newArc = "M" + newStart + "A" + middleSec + "0 0 0 " + newEnd;
+                                }//if
+                                
+                                //Create a new invisible arc that the text can flow along
+                                y.append("path")
+                                    .attr("class", "hiddenYogArcs")
+                                    .attr("id", "yogArc"+i)
+                                    .attr("d", newArc)
+                                    .style("fill", "none");
+                            });
+                                
+                            //Append the label names on the outside
+                            y.selectAll(".yognames")
+                                .data(pieYoga(yoga))
+                               .enter().append("text")
+                                .attr("class", "yognames")
+                                //Move the labels below the arcs for those slices with an end angle greater than 90 degrees
+                                .attr("dy", function(d,i) { return (d.endAngle > 90 * Math.PI/180 ? -29 : 35); })
+                               .append("textPath")
+                                .attr("startOffset","50%")
+                                .style("text-anchor","middle")
+                                .attr("xlink:href",function(d,i){return "#yogArc"+i;})
+                                .text(function(d){return d.data.name;
+                            });
+
+
+//generate Pada arcs
+                var p= svg.append("g")
+                          .attr("class","wheelPada");
+                p.selectAll(".arc2")
+                    .data(piePada(pada))
+                    .enter().append("g")
+                    .attr("class", "arc2")
+                    .append("path")
+                    .attr("d",pada_arc)
+                    .style("fill",d3.color("#ff652f"))
+                    .transition()
+                    .ease(d3.easeLinear)
+                    .duration(2000)
+                    .attrTween("d", pieTweenP);
+
+//generate Nakshtra Arcs
+                var n= svg.append("g")
+                          .attr("class","wheelNakshatra");
+                    
+                n.selectAll(".arc1")
+                    .data(pieNakshatra(nakshatra))
+                    .enter().append("g")
+                    .attr("class", "arc1")
+                    .append("path")
+                    .attr("d",nakshatra_arc)
+                    .style("fill",d3.color("#ff652f"))
+                    .transition()
+                    .ease(d3.easeLinear)
+                    .duration(2000)
+                    .attrTween("d", pieTweenN)
+                    .each(function(d,i) {
+                                //Search pattern for everything between the start and the first capital L
+                                var firstArcSection = /(^.+?)L/;    
+
+                                //Grab everything up to the first Line statement
+                                var newArc = firstArcSection.exec( d3.select(this).attr("d") )[1];
+                                //Replace all the comma's so that IE can handle it
+                                newArc = newArc.replace(/,/g , " ");
+                                
+                                //If the end angle lies beyond a quarter of a circle (90 degrees or pi/2) 
+                                //flip the end and start position
+                                if (d.endAngle > 90 * Math.PI/180) {
+                                    var startLoc    = /M(.*?)A/,        //Everything between the first capital M and first capital A
+                                        middleLoc   = /A(.*?)0 0 1/,    //Everything between the first capital A and 0 0 1
+                                        endLoc      = /0 0 1 (.*?)$/;   //Everything between the first 0 0 1 and the end of the string (denoted by $)
+                                    //Flip the direction of the arc by switching the start en end point (and sweep flag)
+                                    //of those elements that are below the horizontal line
+                                    var newStart = endLoc.exec( newArc )[1];
+                                    var newEnd = startLoc.exec( newArc )[1];
+                                    var middleSec = middleLoc.exec( newArc )[1];
+                                    
+                                    //Build up the new arc notation, set the sweep-flag to 0
+                                    newArc = "M" + newStart + "A" + middleSec + "0 0 0 " + newEnd;
+                                }//if
+                                
+                                //Create a new invisible arc that the text can flow along
+                                n.append("path")
+                                    .attr("class", "hiddenNakArcs")
+                                    .attr("id", "nakArc"+i)
+                                    .attr("d", newArc)
+                                    .style("fill", "none");
+                            });
+                                
+                            //Append the label names on the outside
+                            n.selectAll(".naknames")
+                                .data(pieNakshatra(nakshatra))
+                               .enter().append("text")
+                                .attr("class", "naknames")
+                                //Move the labels below the arcs for those slices with an end angle greater than 90 degrees
+                                .attr("dy", function(d,i) { return (d.endAngle > 90 * Math.PI/180 ? 6 : 0); })
+                               .append("textPath")
+                                .attr("startOffset","50%")
+                                .style("text-anchor","middle")
+                                .attr("xlink:href",function(d,i){return "#nakArc"+i;})
+                                .text(function(d){return d.data.name;
+                            });
+
+//generate Rashi arcs
+                //append g element
+                var r= svg.append("g")
+                    .attr("class","wheelRashi");
+
+                r.selectAll(".arc")
+                    .data(pieRashi(rashival))
+                    .enter().append("g")
+                    .attr("class", "arc")
+                    .append("path")
+                    .attr("id","try")
+                    .attr("d",rashi_arc)
+                    .style("fill", d3.color("#ff652f"))
+                    .transition()
+                    .ease(d3.easeLinear)
+                    .duration(2000)
+                    .attrTween("d", pieTweenR)
+                    .each(function(d,i) {
+                                //Search pattern for everything between the start and the first capital L
+                                var firstArcSection = /(^.+?)L/;    
+
+                                //Grab everything up to the first Line statement
+                                var newArc = firstArcSection.exec( d3.select(this).attr("d") )[1];
+                                //Replace all the comma's so that IE can handle it
+                                newArc = newArc.replace(/,/g , " ");
+                                
+                                //If the end angle lies beyond a quarter of a circle (90 degrees or pi/2) 
+                                //flip the end and start position
+                                if (d.endAngle > 90 * Math.PI/180) {
+                                    var startLoc    = /M(.*?)A/,        //Everything between the first capital M and first capital A
+                                        middleLoc   = /A(.*?)0 0 1/,    //Everything between the first capital A and 0 0 1
+                                        endLoc      = /0 0 1 (.*?)$/;   //Everything between the first 0 0 1 and the end of the string (denoted by $)
+                                    //Flip the direction of the arc by switching the start en end point (and sweep flag)
+                                    //of those elements that are below the horizontal line
+                                    var newStart = endLoc.exec( newArc )[1];
+                                    var newEnd = startLoc.exec( newArc )[1];
+                                    var middleSec = middleLoc.exec( newArc )[1];
+                                    
+                                    //Build up the new arc notation, set the sweep-flag to 0
+                                    newArc = "M" + newStart + "A" + middleSec + "0 0 0 " + newEnd;
+                                }//if
+                                
+                                //Create a new invisible arc that the text can flow along
+                                r.append("path")
+                                    .attr("class", "hiddenRashiArcs")
+                                    .attr("id", "rashiArc"+i)
+                                    .attr("d", newArc)
+                                    .style("fill", "none");
+                            });
+                                
+                            //Append the label names on the outside
+                            r.selectAll(".rashinames")
+                                .data(pieRashi(rashival))
+                               .enter().append("text")
+                                .attr("class", "rashinames")
+                                //Move the labels below the arcs for those slices with an end angle greater than 90 degrees
+                                .attr("dy", function(d,i) { return (d.endAngle > 90 * Math.PI/180 ? -29 : 35); })
+                               .append("textPath")
+                                .attr("startOffset","50%")
+                                .style("text-anchor","middle")
+                                .attr("xlink:href",function(d,i){return "#rashiArc"+i;})
+                                .text(function(d){return d.data.name;
+                            });
+            
+                    
+             
+
+
+
+
+
+                
+
+
+
+
 
 //create the marker line
                 var l=svg.append("line")
@@ -447,12 +684,181 @@ function drawChart()
         }
 
     drawChart.kundaliChart=kundaliChart;
+
+
+
+    function rotateKundaliWheel(a,d){
+        var tody=formatDate(d);
+        var todaymon=formatMonth(d);
+        var tit,nak,yog,kar,va;
+        var nak_no,tit_no,yog_no;
+        for(var i=(todaymon-1)*28;i<dat.length;i++)
+        {  
+            if(dat[i].DTSTART.replace(/\s/g,"")==tody.replace(/\s/g,""))
+            {   tit=dat[i].TITHI;
+                nak=dat[i].NAKSHATRA;
+                yog=dat[i].YOGA;
+                kar=dat[i].KARANA;
+                va=dat[i].WEEKDAY;
+                break;
+            }  
+
+        }
+
+        for(var i=0;i<yoga.length;i++)
+        {   
+            
+            if(yoga[i].name.replace(/\s/g,"")==yog.replace(/\s/g,""))
+            {
+                yog_no=i;
+                
+                break;
+            }
+        }
+        for(var i=0;i<nakshatra.length;i++)
+        {   
+            if(nakshatra[i].name.replace(/\s/g,"")==nak.replace(/\s/g,""))
+            {
+                nak_no=i;
+                
+                break;
+            }
+        }
+        
+
+        var nak_rot=360-(((nak_no+1)*360/27)-7);
+        var yog_rot=360-(((yog_no+1)*360/27)-7);
+        
+        if(a==1)
+        {   //rotate for vertical axis
+            d3.select(".wheelNakshatra")
+                .attr("transform"," rotate("+nak_rot+",0,0)");
+            d3.select(".wheelYoga")
+                .attr("transform"," rotate("+yog_rot+",0,0)");
+            d3.select(".marker")
+                .attr("transform"," rotate(0,0,0)");
+            d3.selectAll(".chart>.container>.values").remove();
+            var g=d3.select(".chart>.container").append("g")
+                    .attr("class","values");
+                
+            g.append("text")
+                .attr("class","upar")
+                .attr("id","one")
+                .text(va);
+            g.append("text")
+                .attr("class","cap")
+                .attr("id","one")
+                .text("Vaara:");
+            g.append("text")
+                .attr("class","upar")
+                .attr("id","two")
+                .text(tit);
+            g.append("text")
+                .attr("class","cap")
+                .attr("id","two")
+                .text("Tithi:");
+            g.append("text")
+                .attr("class","upar")
+                .attr("id","three")
+                .text(nak);
+            g.append("text")
+                .attr("class","cap")
+                .attr("id","three")
+                .text("Nakshatra:");
+            g.append("text")
+                .attr("class","upar")
+                .attr("id","four")
+                .text(yog);
+            g.append("text")
+                .attr("class","cap")
+                .attr("id","four")
+                .text("Yoga:");
+            g.append("text")
+                .attr("class","upar")
+                .attr("id","five")
+                .text(kar);
+            g.append("text")
+                .attr("class","cap")
+                 .attr("id","five")
+                .text("Karana:");
+        }
+        else if(a==2)
+        {   d3.select(".wheelNakshatra")
+                .attr("transform"," rotate("+nak_rot+90+",0,0)");
+            d3.select(".wheelYoga")
+                .attr("transform"," rotate("+yog_rot+90+",0,0)");
+            d3.select(".marker")
+                .attr("transform"," rotate(90,0,0)");
+            d3.selectAll(".chart>.container>.values").remove();
+            var g= d3.select(".chart>.container").append("g")
+                    .attr("class","values");
+                
+            g.append("text")
+                .attr("class","side")
+                .attr("id","one")
+                .text(va);
+            g.append("text")
+                .attr("class","capi")
+                .attr("id","one")
+                .text("Vaara:");
+            g.append("text")
+                .attr("class","side")
+                .attr("id","two")
+                .text(tit);
+            g.append("text")
+                .attr("class","capi")
+                .attr("id","two")
+                .text("Tithi:");
+            g.append("text")
+                .attr("class","side")
+                .attr("id","three")
+                .text(nak);
+            g.append("text")
+                .attr("class","capi")
+                .attr("id","three")
+                .text("Nakshatra:");
+            g.append("text")
+                .attr("class","side")
+                .attr("id","four")
+                .text(yog);
+            g.append("text")
+                .attr("class","capi")
+                .attr("id","four")
+                .text("Yog:");
+            g.select(".chart>.container")
+                .append("text")
+                .attr("class","side")
+                 .attr("id","five")
+                .text(kar);
+            g.append("text")
+                .attr("class","capi")
+                .attr("id","five")
+                .text("Karana:");
+
+        }else
+        {
+            d3.select(".wheelNakshatra")
+                .attr("transform"," rotate(0,0,0)");
+            d3.select(".wheelYoga")
+                .attr("transform"," rotate(0,0,0)");
+
+        }
+        
+
+    }
+
+    drawChart.rotateKundaliWheel=rotateKundaliWheel;
+
+
+
+
+
 } 
 
 function drawTithiChart(){
 
         // variable for holding csv data   
-            var dat; 
+          
 
             d3.csv('panchang.csv',function(error,data){
              if(error){ throw error;}
@@ -470,7 +876,7 @@ function drawTithiChart(){
                 chart.append("svg")
                     .attr("width",windowWidth*100)
                     .attr("height",height*0.05)
-                    .attr("transform","translate(0,"+windowHeight*0.5+")")
+                    .attr("transform","translate(0,"+windowHeight*0.58+")")
                     .call(d3.zoom().on("zoom", function () {
                         svg.attr("transform", d3.event.transform)
                      }))
@@ -485,7 +891,7 @@ function drawTithiChart(){
 
         //month
                 chart.append("svg")
-                    .attr("transform","translate(0,"+windowHeight*0.475+")")
+                    .attr("transform","translate(0,"+windowHeight*0.55+")")
                     .attr("class","x-axis-mon")
                     .attr("text-anchor","end")
                     .attr("width",windowWidth*100)
@@ -494,11 +900,12 @@ function drawTithiChart(){
                             .tickFormat(function(d){
                                 return formatTime_daymonth(d);
                             }
-                        ).tickSize(20));
+                        ).tickSize(10));
 
                     var chart_bars=chart.append("svg")
                      .attr("width",windowWidth*100)
-                     .attr("height",height/2);
+                     .attr("height",height*0.59)
+                     .attr("transform","translate(0,"+windowHeight*0.02+")");
 
                      chart_bars.append("g")
                      .attr("class","barTithi");
@@ -525,13 +932,14 @@ function drawTithiChart(){
                         return xScale(dateTime(val[1]))-xScale(dateTime(val[0]));
                         
                      })
-                     .attr("height","50px")
+                     .attr("height",height*0.04)
                      .attr("rx",10)
                      .attr("x", function(){
                         return xScale(dateTime(val[0]));
                      })
-                     .attr("y",320)
-                     .attr("fill","#F06292");
+                     .attr("y",height*0.53)
+                     .attr("fill","#F06292")
+                     .on("mouseover", mouseover).on("mouseout", mouseout).on("mousemove", mousemove);
         // drawing tithi 2
                     if(d.TITHI2.replace(/\s/g,"")!="None")
                     {
@@ -543,11 +951,12 @@ function drawTithiChart(){
                         return xScale(dateTime(d.TITHI2END.concat(" ",d.DTEND)))-xScale(dateTime(d.TITHIEND.concat(" ",d.DTSTART)));//giveTithi(data[i].TITHIEND,data[i].DTSTART,);
                         
                      })
-                     .attr("height","50px")
+                     .attr("height",height*0.04)
                      .attr("rx",10)
                      .attr("x",xScale(dateTime(d.TITHIEND.concat(" ",d.DTSTART))))
-                     .attr("y",320)
-                     .attr("fill","#cccaca");
+                     .attr("y",height*0.53)
+                     .attr("fill","#cccaca")
+                     .on("mouseover", mouseover).on("mouseout", mouseout).on("mousemove", mousemove);
 
                     }
 
@@ -561,13 +970,14 @@ function drawTithiChart(){
                         return xScale(dateTime(val[1]))-xScale(dateTime(val[0]));
                         
                      })
-                     .attr("height","50px")
+                     .attr("height",height*0.04)
                      .attr("rx",10)
                      .attr("x", function(){
                         return xScale(dateTime(val[0]));
                      })
-                     .attr("y",269)
-                     .attr("fill","#FFC107");
+                     .attr("y",height*0.47)
+                     .attr("fill","#FFC107")
+                     .on("mouseover", mouseover).on("mouseout", mouseout).on("mousemove", mousemove);
         // drawing Nakshatra 2
                     if(d.NAKSHATRA2.replace(/\s/g,"")!="None")
                     {
@@ -579,11 +989,12 @@ function drawTithiChart(){
                         return xScale(dateTime(d.NAKSHATRA2END.concat(" ",d.DTEND)))-xScale(dateTime(d.NAKSHATRAEND.concat(" ",d.DTSTART)));//giveTithi(data[i].TITHIEND,data[i].DTSTART,);
                         
                      })
-                     .attr("height","50px")
+                     .attr("height",height*0.04)
                      .attr("rx",10)
                      .attr("x",xScale(dateTime(d.NAKSHATRAEND.concat(" ",d.DTSTART))))
-                     .attr("y",269)
-                     .attr("fill","#ffe082");
+                     .attr("y",height*0.47)
+                     .attr("fill","#ffe082")
+                     .on("mouseover", mouseover).on("mouseout", mouseout).on("mousemove", mousemove);
 
                     }
         //draw Yoga bars
@@ -596,13 +1007,14 @@ function drawTithiChart(){
                         return xScale(dateTime(val[1]))-xScale(dateTime(val[0]));
                         
                      })
-                     .attr("height","50px")
+                     .attr("height",height*0.04)
                      .attr("rx",10)
                      .attr("x", function(){
                         return xScale(dateTime(val[0]));
                      })
-                     .attr("y",217)
-                     .attr("fill","#9ccc65");
+                     .attr("y",height*0.41)
+                     .attr("fill","#9ccc65")
+                     .on("mouseover", mouseover).on("mouseout", mouseout).on("mousemove", mousemove);
         // drawing Yoga 2 bars
                     if(d.YOGA2.replace(/\s/g,"")!="None")
                     {
@@ -614,11 +1026,12 @@ function drawTithiChart(){
                         return xScale(dateTime(d.YOGA2END.concat(" ",d.DTEND)))-xScale(dateTime(d.YOGAEND.concat(" ",d.DTSTART)));//giveTithi(data[i].TITHIEND,data[i].DTSTART,);
                         
                      })
-                     .attr("height","50px")
+                     .attr("height",height*0.04)
                      .attr("rx",10)
                      .attr("x",xScale(dateTime(d.YOGAEND.concat(" ",d.DTSTART))))
-                     .attr("y",217)
-                     .attr("fill","#aed581");
+                     .attr("y",height*0.41)
+                     .attr("fill","#aed581")
+                     .on("mouseover", mouseover).on("mouseout", mouseout).on("mousemove", mousemove);
 
                     }
                     
@@ -632,13 +1045,14 @@ function drawTithiChart(){
                         return xScale(dateTime(val[1]))-xScale(dateTime(val[0]));
                         
                      })
-                     .attr("height","50px")
+                     .attr("height",height*0.04)
                      .attr("rx",10)
                      .attr("x", function(){
                         return xScale(dateTime(val[0]));
                      })
-                     .attr("y",165)
-                     .attr("fill","#4FC3F7");
+                     .attr("y",height*0.35)
+                     .attr("fill","#4FC3F7")
+                     .on("mouseover", mouseover).on("mouseout", mouseout).on("mousemove", mousemove);
         // drawing Karana 2 bars
                    if(d.KARANA2.replace(/\s/g,"")!="None" && d.KARANA2END.replace(/\s/g,"")!="FullNight")
                     {
@@ -652,11 +1066,12 @@ function drawTithiChart(){
                         //return xScale(dateTime(d.KARANA2END.concat(" ",d.DTEND)))-xScale(dateTime(d.KARANAEND.concat(" ",d.DTSTART)));//giveTithi(data[i].TITHIEND,data[i].DTSTART,);
                         
                      })
-                     .attr("height","50px")
+                     .attr("height",height*0.04)
                      .attr("rx",10)
                      .attr("x",xScale(dateTime(d.KARANAEND.concat(" ",d.DTSTART))))
-                     .attr("y",165)
-                     .attr("fill","#4FC3F7");
+                     .attr("y",height*0.35)
+                     .attr("fill","#4FC3F7")
+                     .on("mouseover", mouseover).on("mouseout", mouseout).on("mousemove", mousemove);
 
                     }
                     
@@ -671,10 +1086,10 @@ function drawTithiChart(){
                         return xScale(dateTime(d.KARANA3END.concat(" ",d.DTEND)))-xScale(dateTime(d.KARANA2END.concat(" ",d.DTSTART)));//giveTithi(data[i].TITHIEND,data[i].DTSTART,);
                         
                      })
-                     .attr("height","50px")
+                     .attr("height",height*0.04)
                      .attr("rx",10)
                      .attr("x",xScale(dateTime(d.KARANA2END.concat(" ",d.DTSTART))))
-                     .attr("y",165)
+                     .attr("y",height*0.35)
                      .attr("fill","#4FC3F7");
 
                     }
@@ -682,7 +1097,87 @@ function drawTithiChart(){
 
 
 
-                })
+                }) // for each ends here
+
+        function mousemove() {
+             //var x0 = xScale.invert(d3.mouse(this)[0]);
+            // console.log("chua move");
+
+          }
+          function mouseover() {
+             
+             
+          }
+          function mouseout() {
+            // var x0 = xScale.invert(d3.mouse(this)[0]);
+            // console.log("chua out");
+            var x0 = xScale.invert(d3.mouse(this)[0]);
+             var da=formatDate(x0);
+             var ti=formatTime(x0);
+             var mo=formatMonth(x0);
+           
+             for(var i=(mo-1)*28;i<dat.length;i++)
+             {  
+                if(dat[i].DTSTART.replace(/\s/g,"")==da.replace(/\s/g,""))
+                {   
+
+                    d3.selectAll(".move>p").remove();
+                    d3.selectAll(".move>div").remove();
+
+                    var tit=dat[i].TITHI;
+                    var nak=dat[i].NAKSHATRA;
+                    var yog=dat[i].YOGA;
+                    var kar=dat[i].KARANA;
+                    var su=dat[i].SUNSIGN;
+                    var sur=dat[i].SUNRISE;
+
+
+                    if(new Date(dat[i].TITHIEND)<=new Date(ti))
+                    {   
+                        if(dat[i].TITHI2END.replace(/\s/g,"")!="None")
+                        {
+                            tit=dat[i].TITHI2;
+                        }
+                        else
+                        {
+                            tit=dat[i+1].TITHI;
+                        }
+
+                    }
+                   
+
+                    var move= d3.select(".move");
+
+                   move.append("p")
+                   .text(kar);
+
+                   move.append("p")
+                   .text(yog);
+
+                   move.append("p")
+                   .text(nak);
+
+                   move.append("p")
+                   .text(tit);
+
+                   var insun=move.append("div")
+                   .attr("class","sun");
+                   
+                   insun.append("p")
+                   .text("Sunsign");
+                   insun.append("p")
+                   .text(su);
+                   insun.append("p")
+                   .text("Sunrise");
+                   insun.append("p")
+                   .text(sur);
+                    break;
+                   
+                }
+             }
+          }
+
+
                 
 
                
@@ -690,12 +1185,41 @@ function drawTithiChart(){
 
             });
 
+
+        drawTithiChart.movingline=movingline;
+        // the horizontal moving line on timeline
+            function movingline(){
+                $(".timeline").mousemove(function (e) {
+                    $(".timeline>.move").offset({ left: e.pageX });
+                }).click(function () {
+                    //$(this).unbind("mousemove");
+                });
+            }
+
+
+
+          
+
+
+
         //gives the width of bars   
             function filltithis(value,i,tithi){
                 tithi_lengths[i]=[dat[i].DTSTART,tithi,value[0],value[1]];
                  //[date, tithi, start_time, end_time]
                 
             } 
+
+            function fillkarana(value,i,tithi){
+
+            }
+            function fillyoga(value,i,tithi)
+            {
+
+            }
+            function fillnakshatra(value,i,tithi)
+            {
+
+            }
 
             function giveLength(name,i)
             {   

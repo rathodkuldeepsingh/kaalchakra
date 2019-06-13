@@ -2,6 +2,11 @@
     var menubutton=0;
     var scroll;
     var sidebtn=6;
+    var today=new Date();;
+    var formatTim_hour=d3.timeFormat("%I:%M");
+    var formatTime_month=d3.timeFormat("%b");
+    var formatate=d3.timeFormat("%e");
+    var formatTimeap=d3.timeFormat("%p");
 
     $(document).ready(function(){
         
@@ -9,20 +14,58 @@
         var width=$(window).width();
         var height=$(window).height();
 
-        drawChart();
+        showKundaliWheel();
        drawTithiChart();
        drawTithiWheel();
         
 
         //date picker
-        //$('[data-toggle="datepicker"]').datepicker();
+        $("#datepick").appendDtpicker({
+
+            onSelect:function(date){
+                var temp=$('#datepick').handleDtpicker('getDate');
+               today=temp;
+                d3.selectAll(".datetime>div").remove();
+
+                d3.select(".datetime")
+                .append("div")
+                .attr("class","date")
+                .text(formatate(temp));
+                d3.select(".datetime")
+                .append("div")
+                .attr("class","month")
+                .text(formatTime_month(temp));
+                d3.select(".datetime")
+                .append("div")
+                .attr("class","time")
+                .text(formatTim_hour(temp));
+                d3.select(".datetime")
+                .append("div")
+                .attr("class","ampm")
+                .text(formatTimeap(temp));
+                d3.select(".datetime")
+                .append("div")
+                .attr("class","year")
+                .text("2019");
+
+                drawChart.rotateKundaliWheel(1,today);
+                
+            }
+        });
+        
+
+
+
+
+
+
 
         $(".sub-menu1, .sub-menu2").css({"width":width*0.8*0.53-height*0.195});
 
 
         $(window).resize(function(){
             d3.selectAll("svg").remove();
-            drawChart();
+          showKundaliWheel();
            drawTithiChart();
            drawTithiWheel();
             width=$(window).width();
@@ -100,10 +143,18 @@
 
         });
 
+    //hover on timeline
+        $(".timeline").hover(function(){
+            drawTithiChart.movingline();
+        },function(){
+
+        });
 
 
-        $("g.container").hover(function(){
-            rotateChart()
+
+        $(".wheelRashi").hover(function(){
+            drawChart.rotateKundaliWheel(1,today);
+            
         },function(){
 
         });
@@ -151,7 +202,7 @@
             {
                 sidebtn=6;
                 
-                console.log("hua");
+                
                 slideKundali(1);
                 if($(".part").index(this)==1){
                     
@@ -219,6 +270,17 @@
 //home button
         $("#logo").click(function(){
             home();
+        });
+
+//date picker
+        $(".datetime").click(function(){
+            if($(".pickdate").hasClass("show"))
+            {$(".pickdate").removeClass("show");
+                console.log($('#datepick').handleDtpicker('getDate'));
+            }
+            else
+            {$(".pickdate").addClass("show");}
+            
         });
 
         $("#kundali_switch").change(function(){
@@ -433,13 +495,15 @@
         {
             $(".left").css({"width":"17vw"});
             $(".right").css({"width":"83vw"});
-            $(".switch").hide(500);
+            //$(".switch").hide(500);
+            drawChart.rotateKundaliWheel(2,today);
         }
         else
         {
             $(".left").css({"width":"50vw"});
             $(".right").css({"width":"50vw"});
-            $(".switch").show(500);
+            //$(".switch").show(500);
+            drawChart.rotateKundaliWheel(1,today);
 
         }
     }
