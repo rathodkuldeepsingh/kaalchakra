@@ -900,15 +900,49 @@ g.container>g{
     overflow: -moz-scrollbars-none;
     -ms-overflow-style: none;
 }
+.main-graphic>.img{
+	    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.main-graphic>p{
+	font-family: bitter;
+	color: #a7a7a7;
+	font-size: 1.5vh;	
+}
 .main-graphic::-webkit-scrollbar { width: 0 !important }
 .panel .text{
-	position: absolute;
+	position: relative;
     font-family: bitter;
     width: 19vw;
     font-size: 2vh;
     left: 55vw;
     top: 10vw;
 }
+.default>.img#one{
+	background-image: url(../img/kundaliwheel.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+	visibility: hidden;
+	opacity: 0;
+}
+.default>.img#two{
+	/*background-image:url("../img/timeline.png"); */
+	visibility: hidden;
+	opacity: 0;
+}
+.default>#one.show{
+	height: 57vh;
+	visibility: visible;
+	opacity: 1;
+}
+.default>#two.show{
+
+	visibility: visible;
+	opacity: 1;
+}
+
 .timel{
 	width: 100%;
     height: 100%;

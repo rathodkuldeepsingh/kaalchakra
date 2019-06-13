@@ -346,6 +346,8 @@
     function showKundaliWheel()
     {
         $(".kundali_wheel").removeClass("hide");
+        $(".default>.img#one").addClass("show");
+        $(".default>.img#two").removeClass("show");
         drawChart();
 
     }
@@ -356,10 +358,14 @@
     function showTimeline()
     {
         $(".timel").removeClass("hide");
+        $(".default>.img#one").removeClass("show");
+        $(".default>.img#two").addClass("show");
     }
     function hideTimeline()
     {
         $(".timel").addClass("hide");
+        $(".default>.img#one").shoeClass("show");
+        $(".default>.img#two").removeClass("show");
     }
     function showMenu(a,ref){
         if(a==0)
