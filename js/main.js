@@ -17,7 +17,9 @@
         showKundaliWheel();
        drawTithiChart();
        drawTithiWheel();
-        
+        showPlanets(today);
+
+        showCurrentDate();
 
         //date picker
         $("#datepick").appendDtpicker({
@@ -49,6 +51,8 @@
                 .text("2019");
 
                 drawChart.rotateKundaliWheel(1,today);
+
+                showPlanets(today);
                 
             }
         });
@@ -559,6 +563,34 @@
             }
             
         }
+    }
+
+    function showCurrentDate(){
+
+                var temp=new Date;
+               today=temp;
+                d3.selectAll(".datetime>div").remove();
+
+                d3.select(".datetime")
+                .append("div")
+                .attr("class","date")
+                .text(formatate(temp));
+                d3.select(".datetime")
+                .append("div")
+                .attr("class","month")
+                .text(formatTime_month(temp));
+                d3.select(".datetime")
+                .append("div")
+                .attr("class","time")
+                .text(formatTim_hour(temp));
+                d3.select(".datetime")
+                .append("div")
+                .attr("class","ampm")
+                .text(formatTimeap(temp));
+                d3.select(".datetime")
+                .append("div")
+                .attr("class","year")
+                .text("2019");
     }
 
     function displaynone(a)

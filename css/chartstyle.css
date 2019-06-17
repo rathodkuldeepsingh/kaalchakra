@@ -186,7 +186,7 @@ g>.capi{
     font-family: Fjalla one;
     color: #e27d60;
     transition: all 0.3s cubic-bezier(0.53,-0.35, 0, 1.03);
-    top: 1vh;
+    
     position: relative;
     padding: 2.5vh 2vw;
 }
@@ -727,7 +727,7 @@ g.container>g{
 	padding: 10px 0px;
     background: #f57d5a;
     visibility: hidden;
-    transform:translate(0, 50%);
+    transform:translate(0, 0);
 	opacity: 0;
 	transition: transform 0.6s ease-in-out, opacity 0.3s ease-in-out 0.2s; 
 	position: absolute;
@@ -736,7 +736,7 @@ g.container>g{
 .sub-menu1.show{
 	visibility: visible !important;
 	opacity: 1;
-	transform:translate(0,107%) !important; 
+	transform:translate(0,10vh) !important; 
 }
 .sub-menu2.show{
 	visibility: visible !important;
@@ -928,7 +928,7 @@ g.container>g{
 	opacity: 0;
 }
 .default>.img#two{
-	/*background-image:url("../img/timeline.png"); */
+	/*background-image:url("../img/timeline.png"); */   
 	visibility: hidden;
 	opacity: 0;
 }

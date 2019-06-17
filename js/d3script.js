@@ -43,7 +43,7 @@
                            {name:"Kanya",value:1},
                            {name:"Simha",value:1},
                            {name:"Karaka",value:1},
-                           {name:"Mihuna",value:1},
+                           {name:"Mithuna",value:1},
                            {name:"Vrushabaha",value:1},
                            {name:"Mesha",value:1}];
 
@@ -139,38 +139,38 @@ function drawChart()
 
 //Backgdrop arc thickness
             var backdrop_arc=d3.arc()
-                    .outerRadius(radius*0.65)
+                    .outerRadius(radius*0.7)
                     .innerRadius(0);
 
             //Rashi arc thickness
             var rashi_arc=d3.arc()
-                    .outerRadius(radius*0.90)
-                    .innerRadius(radius*0.75);
+                    .outerRadius(radius)
+                    .innerRadius(radius*0.85);
 
             //Nakshatra arc thickness
             var nakshatra_arc=d3.arc()
-                    .outerRadius(radius*1.10)
-                    .innerRadius(radius*0.95);
+                    .outerRadius(radius*1.20)
+                    .innerRadius(radius*1.05);
 
             //pada arc thickness        
             var pada_arc=d3.arc()
-                    .outerRadius(radius*0.95)
-                    .innerRadius(radius*0.90);
+                    .outerRadius(radius*1.05)
+                    .innerRadius(radius);
 
             //yoga arc thickness        
             var yoga_arc=d3.arc()
-                    .outerRadius(radius*1.40)
-                    .innerRadius(radius*1.25);
+                    .outerRadius(radius*1.50)
+                    .innerRadius(radius*1.35);
 
             //tithi arc thickness        
             var tithi_arc=d3.arc()
-                    .outerRadius(radius*1.45)
-                    .innerRadius(radius*1.4);
+                    .outerRadius(radius*1.57)
+                    .innerRadius(radius*1.52);
 
             //days arc thickness        
             var days_arc=d3.arc()
-                    .outerRadius(radius*1.5)
-                    .innerRadius(radius*1.46);
+                    .outerRadius(radius*1.63)
+                    .innerRadius(radius*1.58);
 
 
             //labels arc
@@ -216,6 +216,9 @@ function drawChart()
                     .attr("class", "container");
 
 
+
+
+
 //generate backdrop Arcs
                 var n= svg.append("g")
                     .attr("class","backdrop");
@@ -255,7 +258,7 @@ function drawChart()
                 d.append("circle")
                 .attr("cx","0")
                 .attr("cy","0")
-                .attr("r",radius*1.30)
+                .attr("r",radius*1.4)
                 .attr("stroke","#f57d5a")
                 .attr("stroke-width",radius*0.2)
                 .attr("fill","white");
@@ -263,7 +266,7 @@ function drawChart()
                 d.append("circle")
                 .attr("cx","0")
                 .attr("cy","0")
-                .attr("r",radius*0.92)
+                .attr("r",radius*1.02)
                 .attr("stroke","#f57d5a")
                 .attr("stroke-width",radius*0.45)
                 .attr("fill","white");
@@ -501,8 +504,163 @@ function drawChart()
                                 .attr("xlink:href",function(d,i){return "#rashiArc"+i;})
                                 .text(function(d){return d.data.name;
                             });
+
+//generate planetary orbits
+            var orb=svg.append("g")
+                    .attr("class","orbits");
+                
+                orb.append("circle")
+                .attr("class","saturn_orb")
+                .attr("cx","0")
+                .attr("cy","0")
+                .attr("r",radius*0.7)
+                .attr("stroke","#f57d5a")
+                .attr("stroke-width",radius*0.01)
+                .attr("stroke-dasharray","2")
+                .attr("fill","white");  
+
+                orb.append("circle")
+                .attr("class","jupiter_orb")
+                .attr("cx","0")
+                .attr("cy","0")
+                .attr("r",radius*0.6)
+                .attr("stroke","#f57d5a")
+                .attr("stroke-width",radius*0.01)
+                .attr("stroke-dasharray","2")
+                .attr("fill","white");  
+
+                orb.append("circle")
+                .attr("class","mars_orb")
+                .attr("cx","0")
+                .attr("cy","0")
+                .attr("r",radius*0.5)
+                .attr("stroke","#f57d5a")
+                .attr("stroke-width",radius*0.01)
+                .attr("stroke-dasharray","2")
+                .attr("fill","white");  
+
+                orb.append("circle")
+                .attr("class","sun_orb")
+                .attr("cx","0")
+                .attr("cy","0")
+                .attr("r",radius*0.4)
+                .attr("stroke","#f57d5a")
+                .attr("stroke-width",radius*0.01)
+                .attr("stroke-dasharray","2")
+                .attr("fill","white");  
+
+                orb.append("circle")
+                .attr("class","venus_orb")
+                .attr("cx","0")
+                .attr("cy","0")
+                .attr("r",radius*0.3)
+                .attr("stroke","#f57d5a")
+                .attr("stroke-width",radius*0.01)
+                .attr("stroke-dasharray","2")
+                .attr("fill","white");    
+
+                 orb.append("circle")
+                .attr("class","mercury_orb")
+                .attr("cx","0")
+                .attr("cy","0")
+                .attr("r",radius*0.2)
+                .attr("stroke","#f57d5a")
+                .attr("stroke-width",radius*0.01)
+                .attr("stroke-dasharray","2")
+                .attr("fill","white");
+
+                orb.append("circle")
+                .attr("class","moon_orb")
+                .attr("cx","0")
+                .attr("cy","0")
+                .attr("r",radius*0.1)
+                .attr("stroke","#f57d5a")
+                .attr("stroke-width",radius*0.01)
+                .attr("stroke-dasharray","2")
+                .attr("fill","white");   
+
+               
+
+                  
+
+
+
+
+ //genertae planets
             
-                    
+            var pl=svg.append("g")
+                .attr("class","planets");
+
+               
+                pl.append("image")
+                .attr("class","moon")
+                .attr("transform-origin","0 0")
+                .attr("xlink:href","/img/moon.png") 
+                .attr("height",radius*0.04)  
+                .attr("width",radius*0.04)
+                .attr("x",-radius*0.12)
+                .attr("y",-radius*0.02);     
+
+                
+                pl.append("image")
+                .attr("class","mercury")
+                .attr("transform-origin","0 0")
+                .attr("xlink:href","/img/mercury.png") 
+                .attr("height",radius*0.05)  
+                .attr("width",radius*0.05)
+                .attr("x",-radius*0.225)
+                .attr("y",-radius*0.025);     
+
+                
+                pl.append("image")
+                .attr("class","venus")
+                .attr("transform-origin","0 0")
+                .attr("xlink:href","/img/venus.png") 
+                .attr("height",radius*0.06)  
+                .attr("width",radius*0.06)
+                .attr("x",-radius*0.33)
+                .attr("y",-radius*0.03);    
+
+                
+                pl.append("image")
+                .attr("class","sun")
+                .attr("transform-origin","0 0")
+                .attr("xlink:href","/img/sun.png") 
+                .attr("height",radius*0.11)  
+                .attr("width",radius*0.11)
+                .attr("x",-radius*0.455)
+                .attr("y",-radius*0.055);  
+
+               
+                pl.append("image")
+                .attr("class","mars")
+                .attr("transform-origin","0 0")
+                .attr("xlink:href","/img/mars.png") 
+                .attr("height",radius*0.05)  
+                .attr("width",radius*0.05)
+                .attr("x",-radius*0.525)
+                .attr("y",-radius*0.025);     
+
+                
+                pl.append("image")
+                .attr("class","jupiter")
+                .attr("transform-origin","0 0")
+                .attr("xlink:href","/img/jupiter.png") 
+                .attr("height",radius*0.08)  
+                .attr("width",radius*0.08)
+                .attr("x",-radius*0.64)
+                .attr("y",-radius*0.04);     
+
+                
+                pl.append("image")
+                .attr("class","saturn")
+                .attr("transform-origin","0 0")
+                .attr("xlink:href","/img/saturn.png") 
+                .attr("height",radius*0.07)  
+                .attr("width",radius*0.07)
+                .attr("x",-radius*0.735)
+                .attr("y",-radius*0.035)
+                .attr("transform","rotate(30)");                     
              
 
 
@@ -1713,6 +1871,68 @@ function drawTithiWheel(){
 
 
 
+}
+
+
+
+function showPlanets(tod){
+    var pladat;
+
+    d3.csv("planetary position.csv",function(error, data){
+        if(error){ throw error;}
+
+        pladat=data;
+
+        console.log(pladat[168]);
+        for(var i=(formatMonth(tod)-1)*28;i<=365;i++)
+        {   console.log(tod+" , "+dates(pladat[i].DATE));
+            if(pladat[i].DATE==formatDate(tod))
+            {
+                d3.select("image.moon").attr("transform","rotate("+angle(pladat[i].MOON, pladat[i].MOON_P)+")");
+                d3.select("image.mercury").attr("transform","rotate("+angle(pladat[i].MERCURY, pladat[i].MERCURY_P)+")");
+                d3.select("image.venus").attr("transform","rotate("+angle(pladat[i].VENUS, pladat[i].VENUS_P)+")");
+                d3.select("image.sun").attr("transform","rotate("+angle(pladat[i].SUN, pladat[i].SUN_P)+")");
+                d3.select("image.mars").attr("transform","rotate("+angle(pladat[i].MARS, pladat[i].MARS_P)+")");
+                d3.select("image.jupiter").attr("transform","rotate("+angle(pladat[i].JUPITER, pladat[i].JUPITER_P)+")");
+                d3.select("image.saturn").attr("transform","rotate("+angle(pladat[i].SATURN, pladat[i].SATURN_P)+")");
+                break;
+            }
+
+        }
+
+
+
+
+
+      /*  data.forEach(function(d,i){
+            var ra=pladat[i].SUN_P;
+            var planet_ang=angle(pladat[i].SUN, ra);
+
+
+
+        })
+        */
+    });
+
+
+
+
+    function angle(ab, ra){
+
+        var ang=ab.split(" ");
+        var an=parseFloat(ang[0])+parseFloat(ang[1]/60);
+       
+        for (var i=0;i<12;i++)
+        {  // console.log("Rashi :"+rashival[i].name+", val: "+ra);
+            if(rashival[i].name==ra.replace(/\s/g,""))
+            {   
+                an=an+parseFloat(i*30);
+                break;
+            }
+        }
+        
+        return an;
+    }
 }
 
 
