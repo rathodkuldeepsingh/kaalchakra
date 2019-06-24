@@ -368,7 +368,7 @@
     function hideTimeline()
     {
         $(".timel").addClass("hide");
-        $(".default>.img#one").shoeClass("show");
+        $(".default>.img#one").addClass("show");
         $(".default>.img#two").removeClass("show");
     }
     function showMenu(a,ref){
@@ -521,23 +521,23 @@
     function setback2(a){
             if(a==0)
             {
-                $(".back2").css({"background": "#f57d5a40 url(../img/leo.png) no-repeat right top","background-size":"contain"});
+                $(".back2").css({"background": "#f57d5a40 url(..img/leo.png) no-repeat right top","background-size":"contain"});
             }
             else if(a==1)
             {   
-                $(".back2").css({"background": "#f57d5a40 url(../img/aries.png) no-repeat right top","background-size":"contain"});
+                $(".back2").css({"background": "#f57d5a40 url(..img/aries.png) no-repeat right top","background-size":"contain"});
             }
             else if(a==2)
             {
-                $(".back2").css({"background": "#f57d5a40 url(../img/scorpio.png) no-repeat right top","background-size":"contain"});
+                $(".back2").css({"background": "#f57d5a40 url(..img/scorpio.png) no-repeat right top","background-size":"contain"});
             }
             else if(a==3)
             {
-                $(".back2").css({"background": "#f57d5a40 url(../img/pisces.png) no-repeat right top","background-size":"contain"});
+                $(".back2").css({"background": "#f57d5a40 url(..img/pisces.png) no-repeat right top","background-size":"contain"});
             }
             else if(a==4)
             {
-                $(".back2").css({"background": "#f57d5a40 url(../img/libra.png) no-repeat right top","background-size":"contain"});
+                $(".back2").css({"background": "#f57d5a40 url(..img/libra.png) no-repeat right top","background-size":"contain"});
             }
             else{
                 $(".back2").css({"background": "#f57d5a40"});
