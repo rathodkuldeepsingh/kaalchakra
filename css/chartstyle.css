@@ -828,6 +828,77 @@ g.container>g{
 	width:100%;
 	position: relative;
 }
+#geo-centric>.main-graphic>.img#one{
+	background-image: url(../img/planets.png);
+    height: 21vw;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#geo-centric>.main-graphic>.img#two{
+	background-image: url(../img/geomodel.png);
+    height: 35vw;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#geo-centric>.main-graphic>.img#three{
+	background-image: url(../img/zodiacband.png);
+    height: 27vw;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#Rashi-Nakshatra>.main-graphic>.img#one{
+	background-image: url(../img/rashi.png);
+    height: 37vw;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#Rashi-Nakshatra>.main-graphic>.img#two{
+	background-image: url(../img/Rashis.png);
+    height: 21vw;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+/*#Rashi-Nakshatra>.main-graphic>.img#three{
+	background-image: url(../img/planets.png);
+    height: 21vw;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}*/
+#calendar>.main-graphic>.img#one{
+	background-image: url(../img/Nakshatra.png);
+    height: 39vw;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#calendar>.main-graphic>.img#two{
+	background-image: url(../img/Nakshatra.png);
+    height: 39vw;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#calendar>.main-graphic>.img#three{
+	background-image: url(../img/Nakshatra.png);
+    height: 39vw;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#calendar>.main-graphic>.img#four{
+	background-image: url(../img/tithis.png);
+    height: 39vw;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 #Vaara>.img#one{
 	background-image: url(../img/vaara.png);
     height: 33vh;
@@ -871,6 +942,7 @@ g.container>g{
 	position: absolute;
 	transform:translate(-50%, 0);
 	opacity: 0; 
+	display: none;
 	transition: all 0.4s ease-in-out;
 }
 .panel.big{
@@ -878,6 +950,7 @@ g.container>g{
     background: #ffffff00;
 	opacity: 1;
 	transform: translate(0,0); 
+	display: block;
 }
 .panel .title{
 	font-family: bitter;
@@ -893,6 +966,7 @@ g.container>g{
 	background: #c5cccc;
     width: 50vw;
     height: 34vw;
+    padding: 0 0 0 2vw;
     position: absolute;
     top: 14vh;
     left: 7vw;
@@ -909,8 +983,9 @@ g.container>g{
 
 .main-graphic>p{
 	font-family: bitter;
-	color: #a7a7a7;
-	font-size: 1.5vh;	
+    color: #757575;
+    font-size: 1.5vh;
+    padding: 0 5vw 0 1vw;
 }
 .main-graphic::-webkit-scrollbar { width: 0 !important }
 .panel .text{
